@@ -17,6 +17,8 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  Login: NavigatorScreenParams<LoginTabParamList | undefined>;
+  Loading: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -24,12 +26,32 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
   Screen
 >;
 
+export type LoginStackScreenProps<Screen extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, Screen>;
+
 export type RootTabParamList = {
-  TabOne: undefined;
+  Home: undefined;
   TabTwo: undefined;
+  Water: undefined;
+  Test: undefined;
 };
+
+export type LoginTabParamList = {
+  Signup: undefined;
+  Login: undefined;
+}
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
 >;
+
+
+export type LoginTabScreenProps<Screen extends keyof LoginTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<LoginTabParamList, Screen>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
+
+
+export type NewRecord<T> = Omit<T, 'id' | 'created_at'>;

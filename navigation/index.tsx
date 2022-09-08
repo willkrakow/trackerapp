@@ -68,10 +68,10 @@ function RootNavigator() {
 
   return (
     <AuthContext.Provider value={authContext}>
-    <Stack.Navigator>
+    <Stack.Navigator >
       {isAuthenticating && <Stack.Screen name="Loading" component={LoadingScreen} />}
       {isLoggedIn ? (
-        <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }}  />
       ) : (
         <Stack.Screen name="Login" component={LoginNavigator} options={{ headerShown: false }} />
       )}

@@ -1,11 +1,9 @@
-import { Button, StyleSheet, TextInput } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import {AuthContext} from '../navigation/auth';
 import ColorBlock from '../components/ColorBlock';
-import Colors from '../constants/Colors';
 import Onboarding from '../components/Onboarding';
 
 
@@ -13,7 +11,7 @@ type UserData = {
   name?: string;
   age?: number;
 }
-export default function TabOneScreen() {
+export default function HomeScreen() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const auth = useContext(AuthContext);
   

@@ -1,6 +1,22 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "target": "es2015",
+    "module": "es2015",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "sourceMap": true,
+    "importHelpers": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   }
 }

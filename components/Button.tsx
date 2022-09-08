@@ -49,6 +49,13 @@ const VariantButton = (props: IVariantButtonProps) => {
     tertiaryText: {
       color: Colors[colorscheme].background,
     },
+    disabledStyle: {
+      backgroundColor: "hsl(0, 0%, 90%)",
+      borderColor: "hsl(0, 0%, 90%)",
+    },
+    disabledTextStyle: {
+      color: "hsl(0, 0%, 50%)",
+    },
   });
 
   const _variant = useMemo(() => {
@@ -59,6 +66,8 @@ const VariantButton = (props: IVariantButtonProps) => {
       {...props}
       buttonStyle={[styles[_variant], styles.button, props.buttonStyle]}
       titleStyle={[styles[`${_variant}Text`], props.titleStyle]}
+      disabledStyle={[styles.disabledStyle, props.disabledStyle]}
+      disabledTitleStyle={[styles.disabledTextStyle, props.disabledTitleStyle]}
     />
   );
 };

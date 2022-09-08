@@ -9,7 +9,7 @@ export default function LoginNavigator() {
   return (
     <LoginTab.Navigator>
       <LoginTab.Screen
-        name="Login"
+        name="LoginForm"
         component={LoginScreen}
         options={{
           title: "Login",

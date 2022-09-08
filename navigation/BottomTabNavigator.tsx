@@ -1,14 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { RootTabParamList, RootTabScreenProps } from "../types";
+import { RootTabParamList } from "../types";
 import useColorScheme from "../hooks/useColorScheme";
 import Colors from "../constants/Colors";
-import HomeScreen from "../screens/HomeScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
-import { Pressable } from "react-native";
 import TabBarIcon from "./TabBarIcon";
-import { FontAwesome } from "@expo/vector-icons";
-import WaterScreen from "../screens/WaterScreen";
-import { PatchDemo } from "../components/SkiaTest";
+import RecordsScreen from "../screens/RecordsScreen";
+import SettingsScreen from "../screens/SettingsScreen";
+import ChartScreen from "../screens/ChartScreen";
+import NotesPage from "../screens/NotesScreen";
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
@@ -26,17 +24,37 @@ export default function BottomTabNavigator() {
       }}
     >
       <BottomTab.Screen
-        name="Water"
-        component={WaterScreen}
+        name="Notes"
+        component={NotesPage}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="water" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="Test"
-        component={PatchDemo}
+        name="Records"
+        component={RecordsScreen}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="water" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="document-attach" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Chart"
+        component={ChartScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="bar-chart" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="settings" color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>

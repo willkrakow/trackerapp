@@ -19,6 +19,7 @@ export type RootStackParamList = {
   NotFound: undefined;
   Login: NavigatorScreenParams<LoginTabParamList | undefined>;
   Loading: undefined;
+  Chart: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -32,13 +33,15 @@ export type LoginStackScreenProps<Screen extends keyof RootStackParamList> =
 export type RootTabParamList = {
   Home: undefined;
   TabTwo: undefined;
-  Water: undefined;
-  Test: undefined;
+  Notes: undefined;
+  Records: undefined;
+  Chart: undefined;
+  Settings: undefined;
 };
 
 export type LoginTabParamList = {
   Signup: undefined;
-  Login: undefined;
+  LoginForm: undefined;
 }
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

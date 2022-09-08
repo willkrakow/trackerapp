@@ -2,35 +2,36 @@ import { Button, StyleSheet, TextInput } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { Text, View } from "../components/Themed";
-import { LoginTabScreenProps } from "../types";
 import { useContext, useMemo, useState } from "react";
 import { AuthContext } from "../navigation/auth";
 
 const FACIAL_AUTH = LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION;
 const FINGERPRINT_AUTH = LocalAuthentication.AuthenticationType.FINGERPRINT;
 
-export default function LoginScreen({
-  navigation,
-}: LoginTabScreenProps<"Login">) {
+export default function LoginScreen() {
   const auth = useContext(AuthContext);
   const [isFirstLogin, setIsFirstLogin] = useState(false);
   const [pin, setPin] = useState<string | null>('');
 
   const handleAuthenticate = async () => {
-    let isEnrolled = false;
-    const authTypes = await LocalAuthentication.supportedAuthenticationTypesAsync();
-    const savedPin = await SecureStore.getItemAsync('pin');
-    if (authTypes.includes(FACIAL_AUTH) || authTypes.includes(FINGERPRINT_AUTH)) {
-      const hasSavedFingerprintOrFacialData = await LocalAuthentication.isEnrolledAsync();
-      isEnrolled = hasSavedFingerprintOrFacialData || savedPin !== null;
-    } else {
-      if (savedPin) {
-        isEnrolled = true;
+    try {
+      let isEnrolled = false;
+      const authTypes = await LocalAuthentication.supportedAuthenticationTypesAsync();
+      const savedPin = await SecureStore.getItemAsync('pin');
+      if (authTypes.includes(FACIAL_AUTH) || authTypes.includes(FINGERPRINT_AUTH)) {
+        const hasSavedFingerprintOrFacialData = await LocalAuthentication.isEnrolledAsync();
+        isEnrolled = hasSavedFingerprintOrFacialData || savedPin !== null;
+      } else {
+        if (savedPin) {
+          isEnrolled = true;
+        }
       }
+      await auth.authenticate();
+      setPin(savedPin);
+      setIsFirstLogin(!isEnrolled);
+    } catch(err){
+      console.log(err)
     }
-    await auth.authenticate();
-    setPin(savedPin);
-    setIsFirstLogin(!isEnrolled);
   }
 
   const handleLogout = async () => {
